@@ -1,4 +1,4 @@
-package com.doj.server.infrastructure.mybatis.plugin;
+package com.doj.server.infrastructure.config.mybatis.plugin;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;

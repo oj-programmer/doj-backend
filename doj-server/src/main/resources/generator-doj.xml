@@ -11,19 +11,19 @@
         <property name="endingDelimiter" value="`"/>
 
         <!--xml mapper -> dao  -->
-        <plugin type="com.doj.server.infrastructure.mybatis.plugin.RenameSqlMapperPlugin">
+        <plugin type="com.doj.server.infrastructure.config.mybatis.plugin.RenameSqlMapperPlugin">
             <property name="searchString" value="Mapper" />
             <property name="replaceString" value="Dao" />
         </plugin>
 
         <!-- dao mapper -> dao  -->
-        <plugin type="com.doj.server.infrastructure.mybatis.plugin.RenameJavaMapperPlugin">
+        <plugin type="com.doj.server.infrastructure.config.mybatis.plugin.RenameJavaMapperPlugin">
             <property name="searchString" value="Mapper" />
             <property name="replaceString" value="DAO" />
         </plugin>
 
         <!-- lombok  -->
-        <plugin type="com.doj.server.infrastructure.mybatis.plugin.LombokPlugin">
+        <plugin type="com.doj.server.infrastructure.config.mybatis.plugin.LombokPlugin">
             <property name="searchString" value="Mapper" />
             <property name="replaceString" value="DAO" />
         </plugin>
