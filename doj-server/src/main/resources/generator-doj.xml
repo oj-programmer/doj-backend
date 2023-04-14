@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动-->
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--xml mapper -> dao  -->
+        <plugin type="com.doj.server.infrastructure.mybatis.plugin.RenameSqlMapperPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="Dao" />
+        </plugin>
+
+        <!-- dao mapper -> dao  -->
+        <plugin type="com.doj.server.infrastructure.mybatis.plugin.RenameJavaMapperPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="DAO" />
+        </plugin>
+
+        <!-- lombok  -->
+        <plugin type="com.doj.server.infrastructure.mybatis.plugin.LombokPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="DAO" />
+        </plugin>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--覆盖生成XML文件-->
+
+
+        <javaTypeResolver type="com.doj.server.DefaultJavaTypeResolver">
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成模型的包名和位置(实体类)-->
+        <javaModelGenerator targetPackage="com.doj.server.model"
+                            targetProject="doj-server/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mappings.base"
+                         targetProject="doj-server/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.doj.server.dao.base"
+                             targetProject="doj-server/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="comment"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false">
+            <property name="renameSuffix" value="DO"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
