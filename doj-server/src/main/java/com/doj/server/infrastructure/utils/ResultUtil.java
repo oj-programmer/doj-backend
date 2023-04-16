@@ -21,7 +21,6 @@ public class ResultUtil {
     public static <T> ResultModel<T> resultSuccess(T result) {
         String requestId = ThreadUtil.getThreadRequestId();
         ResultModel<T> resultModel = new ResultModel<>();
-        resultModel.setSuccess(true);
         resultModel.setResult(result);
         resultModel.setRequestId(requestId);
         resultModel.setCode(String.valueOf(HttpStatus.OK.value()));

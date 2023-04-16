@@ -22,4 +22,9 @@ public class SystemConstant {
      * 异步回调，超时时间(s)
      */
     public static final Integer ASYNC_CALL_BACK_TIME_OUT = 10;
+
+    /**
+     * 唯一索引命名前缀
+     */
+    public static final CharSequence UK_PREFIX = "uk_";
 }
