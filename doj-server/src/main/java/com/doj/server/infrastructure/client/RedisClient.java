@@ -1,4 +1,4 @@
-package com.doj.server.infrastructure.manager;
+package com.doj.server.infrastructure.client;
 
 import org.springframework.stereotype.Component;
 
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
  * @date 2023/4/14
  */
 @Component
-public class RedisManager {
+public class RedisClient {
 }

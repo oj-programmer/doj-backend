@@ -1,4 +1,4 @@
-package com.doj.server.servie;
+package com.doj.server.service;
 
 /**
  * 类描述：算法服务

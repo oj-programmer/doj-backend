@@ -1,6 +1,7 @@
-package com.doj.server.servie;
+package com.doj.server.service;
 
 import com.doj.server.dto.login.LoginDTO;
+import com.doj.server.dto.login.RegisterDTO;
 
 /**
  * 类描述: 登陆 Service
@@ -10,5 +11,12 @@ import com.doj.server.dto.login.LoginDTO;
  */
 public interface LoginService {
 
+    /**
+     * 登陆
+     * @param loginDTO
+     */
     void login(LoginDTO loginDTO);
+
+    void register(RegisterDTO registerDTO);
+
 }

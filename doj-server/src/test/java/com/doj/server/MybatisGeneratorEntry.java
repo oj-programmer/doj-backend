@@ -28,6 +28,6 @@ public class MybatisGeneratorEntry {
         DefaultShellCallback callback = new DefaultShellCallback(true);
         MyBatisGenerator generator = new MyBatisGenerator(config, callback, warnings);
         generator.generate(null);
-        log.warn("生成结果--------:{}", JsonUtil.format(warnings));
+        log.warn("生成结果--------:{}", JsonUtil.serialize(warnings));
     }
 }

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doj.server.dao.base.DiscussionDAO">
+  <resultMap id="BaseResultMap" type="com.doj.server.model.discussion.DiscussionDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="discussion_id" jdbcType="VARCHAR" property="discussionId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="view_num" jdbcType="INTEGER" property="viewNum" />
+    <result column="like_num" jdbcType="INTEGER" property="likeNum" />
+    <result column="top_priority" jdbcType="SMALLINT" property="topPriority" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, discussion_id, description, user_id, view_num, like_num, top_priority, comment_num, 
+    `status`, create_user, update_user, create_time, update_time, delete_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from discussion
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from discussion
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doj.server.model.discussion.DiscussionDO">
+    insert into discussion (id, discussion_id, description, 
+      user_id, view_num, like_num, 
+      top_priority, comment_num, `status`, 
+      create_user, update_user, create_time, 
+      update_time, delete_time)
+    values (#{id,jdbcType=BIGINT}, #{discussionId,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{viewNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}, 
+      #{topPriority,jdbcType=SMALLINT}, #{commentNum,jdbcType=INTEGER}, #{status,jdbcType=SMALLINT}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT}, #{deleteTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doj.server.model.discussion.DiscussionDO">
+    insert into discussion
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="discussionId != null">
+        discussion_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="viewNum != null">
+        view_num,
+      </if>
+      <if test="likeNum != null">
+        like_num,
+      </if>
+      <if test="topPriority != null">
+        top_priority,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="discussionId != null">
+        #{discussionId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null">
+        #{viewNum,jdbcType=INTEGER},
+      </if>
+      <if test="likeNum != null">
+        #{likeNum,jdbcType=INTEGER},
+      </if>
+      <if test="topPriority != null">
+        #{topPriority,jdbcType=SMALLINT},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doj.server.model.discussion.DiscussionDO">
+    update discussion
+    <set>
+      <if test="discussionId != null">
+        discussion_id = #{discussionId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null">
+        view_num = #{viewNum,jdbcType=INTEGER},
+      </if>
+      <if test="likeNum != null">
+        like_num = #{likeNum,jdbcType=INTEGER},
+      </if>
+      <if test="topPriority != null">
+        top_priority = #{topPriority,jdbcType=SMALLINT},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doj.server.model.discussion.DiscussionDO">
+    update discussion
+    set discussion_id = #{discussionId,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      view_num = #{viewNum,jdbcType=INTEGER},
+      like_num = #{likeNum,jdbcType=INTEGER},
+      top_priority = #{topPriority,jdbcType=SMALLINT},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=SMALLINT},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      delete_time = #{deleteTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

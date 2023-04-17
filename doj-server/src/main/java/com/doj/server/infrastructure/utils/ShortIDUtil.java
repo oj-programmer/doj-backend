@@ -20,6 +20,11 @@ public class ShortIDUtil {
      */
     private static final String ALGORITHM_SHORT_ID_PREFIX = "algorithm-";
 
+    /**
+     * 讨论帖子D前缀
+     */
+    private static final String DISCUSSION_SHORT_ID_PREFIX = "discussion-";
+
 
     /**
      * 算法短ID生成器
@@ -27,6 +32,15 @@ public class ShortIDUtil {
      */
     public static String generateAlgorithmShortID() {
         return ALGORITHM_SHORT_ID_PREFIX + RandomStringUtils.randomAlphanumeric(DIGIT);
+    }
+
+
+    /**
+     * 讨论帖子短ID生成器
+     * @return
+     */
+    public static String generateDiscussionShortID() {
+        return DISCUSSION_SHORT_ID_PREFIX + RandomStringUtils.randomAlphanumeric(DIGIT);
     }
 
 }

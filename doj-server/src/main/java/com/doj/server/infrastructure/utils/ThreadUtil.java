@@ -26,10 +26,6 @@ public class ThreadUtil {
      */
     private static ThreadLocal<String> threadRequestId = new TransmittableThreadLocal<>();
 
-    /**
-     * 生成uuapToken
-     */
-    private static ThreadLocal<String> threadUuapToken = new TransmittableThreadLocal<>();
 
     /**
      * 设置用户user
@@ -47,15 +43,6 @@ public class ThreadUtil {
      */
     public static void setSessionId(String sessionId) {
         sessionIdLocal.set(sessionId);
-    }
-
-    /**
-     * 设置uuapToken
-     *
-     * @param
-     */
-    public static void setUuapToken(String uuapToken) {
-        threadUuapToken.set(uuapToken);
     }
 
     /**
@@ -80,13 +67,6 @@ public class ThreadUtil {
     }
 
     /**
-     * 清理用户uuapToken
-     */
-    public static void clearUuapToken() {
-        threadUuapToken.remove();
-    }
-
-    /**
      * 获取用户user
      *
      * @return
@@ -102,15 +82,6 @@ public class ThreadUtil {
      */
     public static String getSessionId() {
         return sessionIdLocal.get();
-    }
-
-    /**
-     * 获取uuapToken
-     *
-     * @return
-     */
-    public static String getThreadUuapToken() {
-        return threadUuapToken.get();
     }
 
     /**
