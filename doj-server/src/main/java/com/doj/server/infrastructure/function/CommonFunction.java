@@ -1,4 +1,4 @@
-package com.doj.server.function;
+package com.doj.server.infrastructure.function;
 
 import com.doj.server.infrastructure.utils.EmptyUtil;
 

@@ -16,4 +16,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
+
+    private String userid;
+
+    private String username;
+
+    private String avater;
+
+    private String gender;
 }

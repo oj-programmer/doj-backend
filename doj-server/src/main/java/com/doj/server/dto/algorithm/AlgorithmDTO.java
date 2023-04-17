@@ -16,4 +16,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AlgorithmDTO {
+
+    private String algorithmId;
+
+    private String name;
+
+    private String link;
+
+    private String difficulty;
 }
