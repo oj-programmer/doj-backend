@@ -9,8 +9,8 @@
 ### 项目结构
 ```text
 - doj
--- doj-judgeserver
--- doj-server
+-- doj-judgeserver  评测服务
+-- doj-server       业务后端服务
 ---- dao            sql操作
 ---- dto            业务DTO
 ---- vo             前端视图对象
