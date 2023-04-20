@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kongweikun@163.com
  * @date 2023/4/16
  */
-@Api("登陆管理")
+@Api(tags = "登陆管理")
 @RestController
 @RequestMapping("/base/api/v1")
 public class FuckLoginController {

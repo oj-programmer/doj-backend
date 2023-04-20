@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.doj.server.dao.base.DiscussionDAO">
-  <resultMap id="BaseResultMap" type="com.doj.server.model.discussion.DiscussionDO">
+  <resultMap id="BaseResultMap" type="com.doj.server.model.Discussion">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="discussion_id" jdbcType="VARCHAR" property="discussionId" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="view_num" jdbcType="INTEGER" property="viewNum" />
     <result column="like_num" jdbcType="INTEGER" property="likeNum" />
     <result column="top_priority" jdbcType="SMALLINT" property="topPriority" />
@@ -17,13 +16,21 @@
     <result column="update_time" jdbcType="BIGINT" property="updateTime" />
     <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.doj.server.model.Discussion">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
   <sql id="Base_Column_List">
-    id, discussion_id, description, user_id, view_num, like_num, top_priority, comment_num, 
-    `status`, create_user, update_user, create_time, update_time, delete_time
+    id, discussion_id, description, view_num, like_num, top_priority, comment_num, `status`, 
+    create_user, update_user, create_time, update_time, delete_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from discussion
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -31,19 +38,19 @@
     delete from discussion
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.doj.server.model.discussion.DiscussionDO">
+  <insert id="insert" parameterType="com.doj.server.model.Discussion">
     insert into discussion (id, discussion_id, description, 
-      user_id, view_num, like_num, 
-      top_priority, comment_num, `status`, 
-      create_user, update_user, create_time, 
-      update_time, delete_time)
+      view_num, like_num, top_priority, 
+      comment_num, `status`, create_user, 
+      update_user, create_time, update_time, 
+      delete_time, content)
     values (#{id,jdbcType=BIGINT}, #{discussionId,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=VARCHAR}, #{viewNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}, 
-      #{topPriority,jdbcType=SMALLINT}, #{commentNum,jdbcType=INTEGER}, #{status,jdbcType=SMALLINT}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=BIGINT}, #{deleteTime,jdbcType=BIGINT})
+      #{viewNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}, #{topPriority,jdbcType=SMALLINT}, 
+      #{commentNum,jdbcType=INTEGER}, #{status,jdbcType=SMALLINT}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{deleteTime,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.doj.server.model.discussion.DiscussionDO">
+  <insert id="insertSelective" parameterType="com.doj.server.model.Discussion">
     insert into discussion
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,9 +61,6 @@
       </if>
       <if test="description != null">
         description,
-      </if>
-      <if test="userId != null">
-        user_id,
       </if>
       <if test="viewNum != null">
         view_num,
@@ -88,6 +92,9 @@
       <if test="deleteTime != null">
         delete_time,
       </if>
+      <if test="content != null">
+        content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -98,9 +105,6 @@
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="viewNum != null">
         #{viewNum,jdbcType=INTEGER},
@@ -132,9 +136,12 @@
       <if test="deleteTime != null">
         #{deleteTime,jdbcType=BIGINT},
       </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.doj.server.model.discussion.DiscussionDO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.doj.server.model.Discussion">
     update discussion
     <set>
       <if test="discussionId != null">
@@ -142,9 +149,6 @@
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="viewNum != null">
         view_num = #{viewNum,jdbcType=INTEGER},
@@ -176,14 +180,33 @@
       <if test="deleteTime != null">
         delete_time = #{deleteTime,jdbcType=BIGINT},
       </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.doj.server.model.discussion.DiscussionDO">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.doj.server.model.Discussion">
     update discussion
     set discussion_id = #{discussionId,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=VARCHAR},
+      view_num = #{viewNum,jdbcType=INTEGER},
+      like_num = #{likeNum,jdbcType=INTEGER},
+      top_priority = #{topPriority,jdbcType=SMALLINT},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=SMALLINT},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      delete_time = #{deleteTime,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doj.server.model.Discussion">
+    update discussion
+    set discussion_id = #{discussionId,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       view_num = #{viewNum,jdbcType=INTEGER},
       like_num = #{likeNum,jdbcType=INTEGER},
       top_priority = #{topPriority,jdbcType=SMALLINT},

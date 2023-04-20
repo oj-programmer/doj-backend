@@ -27,4 +27,14 @@ public class SystemConstant {
      * 唯一索引命名前缀
      */
     public static final CharSequence UK_PREFIX = "uk_";
+
+    /**
+     * requestId
+     */
+    public static final String REQUEST_ID = "requestId";
+
+    /**
+     * cookie ticket
+     */
+    public static final String COOKIE_TICKET = "ticket";
 }

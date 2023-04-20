@@ -3,6 +3,7 @@ package com.doj.server.strategy.common;
 import com.doj.server.infrastructure.enums.ItemEnum;
 import com.doj.server.infrastructure.enums.ServiceCodeEnum;
 import com.doj.server.infrastructure.exception.BaseException;
+import com.doj.server.infrastructure.exception.DojServerException;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -18,17 +19,17 @@ public enum ItemCheckStrategyEnum {
     USER(ItemEnum.USER) {
         @Override
         public ServiceCodeEnum getArgumentInvalidEnum() {
-            return null;
+            return ServiceCodeEnum.USER_ARGUMENT_INVALID;
         }
 
         @Override
         public BaseException throwInsertDupException(ServiceCodeEnum codeEnum) {
-            return null;
+            return new DojServerException(codeEnum);
         }
 
         @Override
         public BaseException throwCheckOperateException(ServiceCodeEnum codeEnum) {
-            return null;
+            return new DojServerException(codeEnum);
         }
     },
 
@@ -36,34 +37,34 @@ public enum ItemCheckStrategyEnum {
     ALGORITHM(ItemEnum.ALGORITHM) {
         @Override
         public ServiceCodeEnum getArgumentInvalidEnum() {
-            return null;
+            return ServiceCodeEnum.ALGORITHM_ARGUMENT_INVALID;
         }
 
         @Override
         public BaseException throwInsertDupException(ServiceCodeEnum codeEnum) {
-            return null;
+            return new DojServerException(codeEnum);
         }
 
         @Override
         public BaseException throwCheckOperateException(ServiceCodeEnum codeEnum) {
-            return null;
+            return new DojServerException(codeEnum);
         }
     },
 
     DISCUSSION(ItemEnum.DISCUSSION) {
         @Override
         public ServiceCodeEnum getArgumentInvalidEnum() {
-            return null;
+            return ServiceCodeEnum.DISCUSSION_ARGUMENT_INVALID;
         }
 
         @Override
         public BaseException throwInsertDupException(ServiceCodeEnum codeEnum) {
-            return null;
+            return new DojServerException(codeEnum);
         }
 
         @Override
         public BaseException throwCheckOperateException(ServiceCodeEnum codeEnum) {
-            return null;
+            return new DojServerException(codeEnum);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.doj.server.model.discussion;
+package com.doj.server.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,20 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* Created by Mybatis Generator on 2023/04/17
+* Created by Mybatis Generator on 2023/04/18
 */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DiscussionDO {
+public class Discussion {
     private Long id;
 
     private String discussionId;
 
     private String description;
-
-    private String userId;
 
     private Integer viewNum;
 
@@ -40,4 +38,6 @@ public class DiscussionDO {
     private Long updateTime;
 
     private Long deleteTime;
+
+    private String content;
 }

@@ -1,5 +1,8 @@
 package com.doj.server.vo.discussion;
 
+import com.doj.server.infrastructure.config.validated.Add;
+import com.doj.server.infrastructure.config.validated.Update;
+import com.doj.server.infrastructure.config.validated.discusion.Top;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -22,14 +25,16 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddDiscussionReqVO {
+public class DiscussionReqVO {
 
-    @NotNull(message = "用户 id 不能为空")
-    private String userId;
+
+    @NotNull(groups = {Update.class, Top.class}, message = "帖子 id 不能为空")
+    private String discussionId;
 
     @Size(max = 255, message = "概述内容不能超过255")
     private String description;
 
     private String content;
+
 
 }

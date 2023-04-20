@@ -1,24 +1,24 @@
 package com.doj.server.dao.base;
 
-import com.doj.server.model.discussion.DiscussionDO;
+import com.doj.server.model.Discussion;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
 
 /**
-* Created by Mybatis Generator on 2023/04/17
+* Created by Mybatis Generator on 2023/04/18
 */
 @Mapper
-@Component
 public interface DiscussionDAO {
     int deleteByPrimaryKey(Long id);
 
-    int insert(DiscussionDO record);
+    int insert(Discussion record);
 
-    int insertSelective(DiscussionDO record);
+    int insertSelective(Discussion record);
 
-    DiscussionDO selectByPrimaryKey(Long id);
+    Discussion selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(DiscussionDO record);
+    int updateByPrimaryKeySelective(Discussion record);
 
-    int updateByPrimaryKey(DiscussionDO record);
+    int updateByPrimaryKeyWithBLOBs(Discussion record);
+
+    int updateByPrimaryKey(Discussion record);
 }
